@@ -166,6 +166,24 @@ $routes = [
         include_once('views/public/public_logout.php');
     },
 
+    // APIs
+
+    'api/get_electives' => function() {
+        include_once('views/api/get_electives.php');
+    },
+
+    'api/student_register' => function() {
+        include_once('views/api/student_register.php');
+    },
+
+    'api/student_login' => function() {
+        include_once('views/api/student_login.php');
+    },
+
+    'api/submit_elective' => function() {
+        include_once('views/api/submit_elective.php');
+    },
+
     //Other routes
     'github' => function()    {
         //department logout
