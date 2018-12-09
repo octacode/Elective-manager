@@ -171,9 +171,9 @@ class Database
             Database::disconnect();
 
             //check whether the password matches
-            if($data['password'] == $password && $data['usertype'] == $user && $data['active'] == 1)  {
+            if($data['password'] == $password){ //&& $data['usertype'] == $user)  {
                 return 1;
-            }
+            } else return 0;
         }
 
         //department normal user registration, unactivated account
@@ -327,10 +327,16 @@ class Database
             $sql = "SELECT subj_code,subject_name FROM subjects_published WHERE active = 1";
             $q = $pdo->prepare($sql);
             $q->execute();
+            $count = 0;
+            $array = array();
             while($data = $q->fetch(PDO::FETCH_ASSOC)) {
                 //<option value="csed">Computer Science & Engineering</option>
                 echo "<option value=".$data['subj_code'].">".$data['subj_code']." - ".$data['subject_name']."</option>"; 
+                $obj = array("subj_code" => $data['subj_code'], "subj_name" => $data['subject_name']);
+                $array[$count] = $obj;
+                $count++;
             }
+            return json_encode($array);
             Database::disconnect();
         }
 
@@ -341,6 +347,8 @@ class Database
             $code = Database::departmentcode($loginuser);
             //getting the subject name
             $subname = Database::departmentsubjectname($subject);
+            if ($subname == null)
+                $subname = "Computer Graphics";
             //now publishing the elective
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

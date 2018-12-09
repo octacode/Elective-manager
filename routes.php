@@ -184,6 +184,30 @@ $routes = [
         include_once('views/api/submit_elective.php');
     },
 
+    'api/delete_electives' => function() {
+        include_once('views/api/delete_electives.php');
+    },
+
+    'api/edit_electives' => function() {
+        include_once('views/api/edit_electives.php');
+    },
+
+    'api/pub_electives' => function() {
+        include_once('views/api/pub_electives.php');
+    },
+
+    'api/list_electives' => function() {
+        include_once('views/api/list_electives.php');
+    },
+
+    'api/dept_login' => function() {
+        include_once('views/api/dept_login.php');
+    },
+
+    'api/dept_registration' => function() {
+        include_once('views/api/dept_registration.php');
+    },
+
     //Other routes
     'github' => function()    {
         //department logout
