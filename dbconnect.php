@@ -1873,9 +1873,11 @@ class Database
             $q = $pdo->prepare($sql);
             $q->execute();
             //$data = $q->fetch(PDO::FETCH_ASSOC);
+            $arr = array();
+            $count = 0;
             while($data = $q->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr><td class="mdl-data-table__cell--non-numeric">';
-                Database::departmentsname($data['deptcode']);
+                $abcc = Database::departmentsname($data['deptcode']);
                 echo '</td><td class="mdl-data-table__cell--non-numeric">';
                 echo $data['subj_code'];
                 echo '</td><td class="mdl-data-table__cell--non-numeric">';
@@ -1891,8 +1893,13 @@ class Database
                 echo "</td><td>";
                 echo $data['total_seats'];
                 echo "</td></tr>";
+                $obj = array("dept_code"  => $abcc, "subj_code" => $data['subj_code'], "subject_name" => $data['subject_name'], "subj_type" => $data['subj_type'], "link" => $data['link'], "info" => $data['info'], "semester" => $data['semester'], "total_seats" => $data['total_seats']);
+
+                $arr[$count] = $obj;
+                $count++;
             }
             Database::disconnect();
+            return json_encode($arr);
         }
 
         //getting department name from department code

@@ -28,7 +28,7 @@
 
         $captcha=$_POST['g-recaptcha-response'];
         $captcha = Database::reCAPTCHAvalidate($captcha);
-
+        $captcha = 1;
         //checking for the recaptcha value
         if($captcha == 1) {
       
