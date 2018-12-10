@@ -8,7 +8,7 @@
 /**
  * Google reCAPTCHAvalidate data-sitekey
  */
-$reCAPTCHAsiteKey = "YOUR_SITE_KEY_HERE";
+$reCAPTCHAsiteKey = "6LegrH8UAAAAABE0IixARJf8tw2Qcve9FyLRHiJ4";
 
 /**
  * Class Database

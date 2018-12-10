@@ -24,14 +24,13 @@
       //Admin registration
       include_once('dbconnect.php');
 
-       if ( !empty($_POST['stureg'] && $_POST['g-recaptcha-response'])) {
+       if ( !empty($_POST['stureg'])){ //&& $_POST['g-recaptcha-response'])) {
 
         $captcha=$_POST['g-recaptcha-response'];
         $captcha = Database::reCAPTCHAvalidate($captcha);
         $captcha = 1;
         //checking for the recaptcha value
         if($captcha == 1) {
-      
         //collecting values
         $rollno = $_POST['rollno'];
         $rollno = strtolower($rollno);
@@ -49,7 +48,9 @@
 
         //inserts data in students database       
         $ret = Database::studentregister($rollno,$name,$password,$fname,$regno,$dob,$dept,$mobileno,$email,$token);
-  
+
+        //echo $ret;
+
          if ($ret == 1)  {
           
           //if user created successfully
@@ -69,6 +70,7 @@
           function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
           </script>
           <!-- Snackbar ends -->
+          
           <?php
           $to = $email;
           $subject = "Student account activation - nith.ac.in";
@@ -90,7 +92,7 @@
           r(function(){
               var snackbarContainer = document.querySelector('#snackbar');
               var data = { message: 'Activate the account, using the activation link sent to your provided email id.',timeout: 4000};
-              snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              //snackbarContainer.MaterialSnackbar.showSnackbar(data);
           });
           function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
           </script>
@@ -110,7 +112,7 @@
             r(function(){
                 var snackbarContainer = document.querySelector('#snackbar');
                 var data = { message: 'Account confirmation mail sending failed.',timeout: 4000};
-                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                //snackbarContainer.MaterialSnackbar.showSnackbar(data);
             });
             function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
             </script>
@@ -131,7 +133,7 @@
           r(function(){
               var snackbarContainer = document.querySelector('#snackbar');
               var data = { message: 'User account creation failed, Please try again.',timeout: 4000};
-              snackbarContainer.MaterialSnackbar.showSnackbar(data);
+              //snackbarContainer.MaterialSnackbar.showSnackbar(data);
           });
           function r(f){ /in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}
           </script>
@@ -144,7 +146,7 @@
 <div class="snippet">
 <span class="mdl-chip mdl-chip--contact">
     <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">S</span>
-    <span class="mdl-chip__text"><a style="color: blue; text-decoration: none;"><?php echo "$username -"; ?></a> Registration Successful <a href="/activate" style="text-decoration: none;">Activate your account here</a>.</span>
+    <span class="mdl-chip__text"><a style="color: blue; text-decoration: none;"><?php echo "$username -"; ?></a> Registration Successful</span>
 </span>
 </div>
 <?php 
@@ -167,7 +169,7 @@
          <input  class="mdl-textfield_input" name="dob" placeholder ="Date Of Birth (yyyy-mm-dd)" type="date" required></div>
          <input  class="mdl-textfield_input" type="text" name="regno" placeholder ="Registration No." required>
          <input  class="mdl-textfield_input" type="email" name="email" id="email" placeholder ="Email" required>
-         <input  class="mdl-textfield_input" placeholder ="Moblie Number" type="text" name="no" pattern="[0-9]{10,10}" id="no" required>        
+         <input  class="mdl-textfield_input" placeholder ="Mobile Number" type="text" name="no" pattern="[0-9]{10,10}" id="no" required>        
          <center>
         <select  name="dept" required>
       <option selected="true" disabled="disabled"> Choose Your Department ....</option>
@@ -185,7 +187,7 @@
       <option value="huma">Management and Humanities</option>     
       </select></center> <br>
       <!-- reCAPTCHA -->
-      <div class="g-recaptcha" data-sitekey=<?php echo $reCAPTCHAsiteKey ?> align="center"></div><br>
+      <!-- <div class="g-recaptcha" data-sitekey=<?php echo $reCAPTCHAsiteKey ?> align="center"></div> --><br>
         <button class="login" name="stureg" value="stureg" type="submit">
             Register
           </button>

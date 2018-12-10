@@ -180,10 +180,6 @@ $routes = [
         include_once('views/api/student_login.php');
     },
 
-    'api/submit_elective' => function() {
-        include_once('views/api/submit_elective.php');
-    },
-
     'api/delete_electives' => function() {
         include_once('views/api/delete_electives.php');
     },
